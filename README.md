@@ -3,6 +3,8 @@ This is a repository for building the `subresource_filter_tools` part of the [Th
 
 Currently only builds for Linux x64 are supported. The `build_linux.sh` script runs without problems on [Ubuntu on WSL](https://ubuntu.com/wsl) though, which means that you could also run them on a Windows 10 machine.
 
+You should run this on an SSD of sufficient size (because you'll end up with ~700k files that are ~22GB in size).
+
 ### Scripts
 * `build_linux.sh`: uses ninja to build `subresource_filter_tools`
 * `copy_libs.sh`: copies binaries and required libraries to a directory called `out/`
@@ -22,9 +24,9 @@ If you want to use them for Bromite, check out [this page](https://www.bromite.o
 
 TL;DR:
 
-    ruleset_converter --input_format=filter-list \
+	ruleset_converter --input_format=filter-list \
 		--output_format=unindexed-ruleset \
-        --input_files=easyprivacy.txt,easylist.txt \
+		--input_files=easyprivacy.txt,easylist.txt \
 		--output_file=filters.dat
 
 ## Download
