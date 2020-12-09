@@ -12,7 +12,7 @@ Currently only builds for Linux x64 are supported. The `build_linux.sh` script r
 These tools allow generating custom ad block filters for browsers that support it, such as [Bromite](https://www.bromite.org/custom-filters) (Android).
 
 ## Why
-I needed some of these tools for my related project, but couldn't find any precompiled binaries.
+I needed some of these tools for my related project, but couldn't find any recent precompiled binaries.
 If you want some AdBlock filter lists for Bromite and possibly other browsers, see [that project](https://github.com/xarantolus/filtrite).
 
 ## How to use

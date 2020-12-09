@@ -34,3 +34,4 @@
 chromium/
 depot_tools/
 *.zip
+out/
