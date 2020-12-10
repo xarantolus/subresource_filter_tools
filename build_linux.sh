@@ -46,7 +46,7 @@ echo "Even if this next command outputs errors, it might still work. The script 
 # Fetching fails if we already downloaded it,
 # Which is when we need sync to update to the latest code
 
-fetch --nohooks --no-history chromium || gclient sync
+fetch --nohooks --no-history chromium || output "\"fetch\" failing doesn't matter.\nUsing \"gclient sync\" to download updates, repo likely has already been downloaded" && gclient sync
 
 output "Done fetching code"
 

@@ -8,7 +8,7 @@ You should run this on an SSD of sufficient size (because you'll end up with ~70
 ### Scripts
 * `build_linux.sh`: uses ninja to build `subresource_filter_tools`
 * `copy_libs.sh`: copies binaries and required libraries to a directory called `out/`
-* `generate_everything.sh`: runs the two scripts above and then packages the output into a zip file. If you want to build for yourself, start this one.
+* `generate_everything.sh`: runs the two scripts above and then packages the output into a zip file. If you want to build for yourself, start this one. Subsequent builds using this script will update the repo to the latest version and the build that, so you don't need to do any extra work to upgrade these tools.
 
 ## Use-Case 
 These tools allow generating custom ad block filters for browsers that support it, such as [Bromite](https://www.bromite.org/custom-filters) (Android).
