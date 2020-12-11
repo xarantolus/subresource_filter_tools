@@ -1,5 +1,5 @@
 # subresource_filter_tools
-This is a repository for building the `subresource_filter_tools` part of the [The Chromium Project](https://www.chromium.org/Home).
+This is a repository for building the `subresource_filter_tools` part of [The Chromium Project](https://www.chromium.org/Home).
 
 Currently only builds for Linux x64 are supported. The `build_linux.sh` script runs without problems on [Ubuntu on WSL](https://ubuntu.com/wsl) though, which means that you could also run them on a Windows 10 machine.
 
