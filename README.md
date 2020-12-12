@@ -1,7 +1,7 @@
 # subresource_filter_tools
 This is a repository for building the `subresource_filter_tools` part of [The Chromium Project](https://www.chromium.org/Home).
 
-Currently only builds for Linux x64 are supported. The `build_linux.sh` script runs without problems on [Ubuntu on WSL](https://ubuntu.com/wsl) though, which means that you could also run them on a Windows 10 machine.
+Currently only builds for Linux x64 are supported. These scripts run without problems on [Ubuntu on WSL](https://ubuntu.com/wsl) though, which means that you can also run them on a Windows 10 machine.
 
 You should run this on an SSD of sufficient size (because you'll end up with ~700k files that are ~22GB in size).
 
@@ -9,6 +9,8 @@ You should run this on an SSD of sufficient size (because you'll end up with ~70
 * `build_linux.sh`: uses ninja to build `subresource_filter_tools`
 * `copy_libs.sh`: copies binaries and required libraries to a directory called `out/`
 * `generate_everything.sh`: runs the two scripts above and then packages the output into a zip file. If you want to build for yourself, start this one. Subsequent builds using this script will update the repo to the latest version and the build that, so you don't need to do any extra work to upgrade these tools.
+
+Please note that the initial download takes at least 30 minutes, the build is also quite slow. So it might take about an hour or longer to build.
 
 ## Use-Case 
 These tools allow generating custom ad block filters for browsers that support it, such as [Bromite](https://www.bromite.org/custom-filters) (Android).
