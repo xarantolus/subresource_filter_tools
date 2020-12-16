@@ -16,7 +16,7 @@ move_libs() {
     cp -u "$1" "$2"
 }
 
-# clear previous release
+# clear previous release, if present
 rm -rf out || true
 
 # copy all required files to out

@@ -31,7 +31,9 @@
 *.out
 *.app
 
+.vscode/
 chromium/
 depot_tools/
 *.zip
 out/
+SHA256SUMS*
