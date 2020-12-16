@@ -8,7 +8,8 @@ You should run this on an SSD of sufficient size (because you'll end up with ~70
 ### Scripts
 * `build_linux.sh`: uses ninja to build `subresource_filter_tools`
 * `copy_libs.sh`: copies binaries and required libraries to a directory called `out/`
-* `generate_everything.sh`: runs the two scripts above and then packages the output into a zip file. If you want to build for yourself, start this one. Subsequent builds using this script will update the repo to the latest version and the build that, so you don't need to do any extra work to upgrade these tools.
+* `release_info.sh`: generates the release info once the build finished
+* `generate_everything.sh`: runs the scripts above and then packages the output into a zip file. If you want to build for yourself, start this one. Subsequent builds using this script will update the repo to the latest version and the build that, so you don't need to do any extra work to upgrade these tools.
 
 Please note that the initial download takes at least 30 minutes, the build is also quite slow. So it might take about an hour or longer to build.
 

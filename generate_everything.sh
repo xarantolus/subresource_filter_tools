@@ -13,7 +13,7 @@ cd ../..
 
 # Rename old SHA file (if present)
 mv "SHA256SUMS" "SHA256SUMS.old" 2>&1 > /dev/null || true
-trap "rm SHA256SUMS.old || true"
+trap "rm SHA256SUMS.old || true" EXIT
 
 # Now we zip that directory
 cd out 
@@ -47,6 +47,9 @@ else
   echo "Generating release zip file..."
   # Zip all files in the out directory
   zip -9 -r "../subresource_filter_tools_linux-x64.zip" *
+
+  ../release_info.sh > "../release.md"
+  
   cd ..
 fi
 

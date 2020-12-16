@@ -37,3 +37,4 @@ depot_tools/
 *.zip
 out/
 SHA256SUMS*
+release.md
