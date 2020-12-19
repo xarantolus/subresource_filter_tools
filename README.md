@@ -6,19 +6,18 @@ Currently only builds for Linux x64 are supported. These scripts run without pro
 You should run this on an SSD of sufficient size (because you'll end up with ~700k files that are ~22GB in size).
 
 ### Scripts
-* `build_linux.sh`: uses ninja to build `subresource_filter_tools`
-* `copy_libs.sh`: copies binaries and required libraries to a directory called `out/`
+* `generate_everything.sh`: this is the script you want to run to build and package everything. At first it runs the install & build script, then copies all release files info a directory, which is then zipped. It automatically updates the code on subsequent builds and only creates a new release file if the build result changed. 
+* `build_linux.sh`: installs all build tools (follows [this guide](https://chromium.googlesource.com/chromium/src/+/master/docs/linux/build_instructions.md)), then downloads the source code and builds `subresource_filter_tools`
+* `copy_libs.sh`: copies binaries and their required libraries to an `out/` directory
 * `release_info.sh`: generates the release info once the build finished
-* `generate_everything.sh`: runs the scripts above and then packages the output into a zip file. If you want to build for yourself, start this one. Subsequent builds using this script will update the repo to the latest version and the build that, so you don't need to do any extra work to upgrade these tools.
 
-Please note that the initial download takes at least 30 minutes, the build is also quite slow. So it might take about an hour or longer to build.
+Please note that the initial download takes at least 30 minutes, the build is also quite slow. It might take about an hour or longer to download and build.
 
-## Use-Case 
+## Use-Case
 These tools allow generating custom ad block filters for browsers that support it, such as [Bromite](https://www.bromite.org/custom-filters) (Android).
 
-## Why
 I needed some of these tools for my related project, but couldn't find any recent precompiled binaries.
-If you want some AdBlock filter lists for Bromite and possibly other browsers, see [that project](https://github.com/xarantolus/filtrite).
+If you want some AdBlock filter lists for Bromite and possibly other browsers, see [the `filtrite` project](https://github.com/xarantolus/filtrite).
 
 ## How to use
 See [this page](https://chromium.googlesource.com/chromium/src.git/+/master/components/subresource_filter/FILTER_LIST_GENERATION.md) <sup>[GitHub Mirror](https://github.com/chromium/chromium/blob/master/components/subresource_filter/FILTER_LIST_GENERATION.md)</sup> to find out how to use these tools.
