@@ -6,7 +6,7 @@ Currently only builds for Linux x64 are supported. These scripts run without pro
 You should run this on an SSD of sufficient size (because you'll end up with ~700k files that are ~22GB in size).
 
 ### Scripts
-* `generate_everything.sh`: this is the script you want to run to build and package everything. At first it runs the install & build script, then copies all release files info a directory, which is then zipped. It automatically updates the code on subsequent builds and only creates a new release file if the build result changed. 
+* `generate_everything.sh`: this is the script you want to run to build and package everything. At first it runs the install & build script, then copies all release files into a directory, which is then zipped. It automatically updates the code on subsequent builds and only creates a new release file if the build result changed. 
 * `build_linux.sh`: installs all build tools (follows [this guide](https://chromium.googlesource.com/chromium/src/+/master/docs/linux/build_instructions.md)), then downloads the source code and builds `subresource_filter_tools`
 * `copy_libs.sh`: copies binaries and their required libraries to an `out/` directory
 * `release_info.sh`: generates the release info once the build finished
