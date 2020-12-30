@@ -57,7 +57,7 @@ cd src
 output "Installing additional build dependencies..."
 
 # Install additional build dependencies
-./build/install-build-deps.sh
+./build/install-build-deps.sh --no-prompt
 
 output "Running preparation steps..."
 
