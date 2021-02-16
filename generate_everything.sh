@@ -28,10 +28,10 @@ sha256sum -b * | sort -k2 > ../SHA256SUMS
 # see https://stackoverflow.com/a/63976250
 
 if cmp --silent -- "../SHA256SUMS" "../SHA256SUMS.old"; then
-    echo "--------------------------------------------------------------------------------"
-    echo "This build has the exact same hashes as the last one."
-    echo "This means that there were no changes and there's no need to create a release."
-    echo "--------------------------------------------------------------------------------"
+    echo "----------------------------------------------------------------------------------"
+    echo "| This build has the exact same hashes as the last one.                          |"
+    echo "| This means that there were no changes and there's no need to create a release. |"
+    echo "----------------------------------------------------------------------------------"
 
     cd ..
     exit 0

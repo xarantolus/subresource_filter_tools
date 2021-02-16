@@ -47,7 +47,8 @@ output "Even if this next command outputs errors, it might still work. The scrip
 fetch --nohooks --no-history chromium || failed=1 && output "\"fetch\" failing doesn't matter.\nUsing \"gclient sync\" to download updates, repo likely has already been downloaded" 
 if [ $failed -eq 1 ]; then
   # fallback to sync command to get latest changes. If that one doesn't work, then we're out of luck
-  gclient sync || (output "OK, running \"gclient sync\" also failed.\nYou should probably remove both the chromium/ and depot_tools/ directory and start over." && exit 1)
+  # The -D flag removes any unused/unnecessary parts of the repository that are no longer needed
+  gclient sync -D || (output "OK, running \"gclient sync\" also failed.\nYou should probably remove both the chromium/ and depot_tools/ directory and start over." && exit 1)
 fi
 
 output "Done fetching code"
