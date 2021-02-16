@@ -20,5 +20,11 @@ file subresource_indexing_tool
 echo 
 echo 
 
+echo "$ file subresource_filter_tool"
+file subresource_filter_tool
+
+echo 
+echo 
+
 echo "$ sha256sum -b * > SHA256SUMS"
 echo -n "\`\`\`"

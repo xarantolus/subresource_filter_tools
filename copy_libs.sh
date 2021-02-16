@@ -20,6 +20,7 @@ move_libs() {
 rm -rf out || true
 
 # copy all required files to out
-# once for ruleset_converter, once for subresource_indexing_tool
+# once for ruleset_converter, once for subresource_indexing_tool and once for subresource_filter_tool
 move_libs chromium/src/out/Default/ruleset_converter out
 move_libs chromium/src/out/Default/subresource_indexing_tool out
+move_libs chromium/src/out/Default/subresource_filter_tool out
