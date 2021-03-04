@@ -38,3 +38,4 @@ depot_tools/
 out/
 SHA256SUMS*
 release.md
+*.log

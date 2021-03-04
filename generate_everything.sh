@@ -52,7 +52,7 @@ else
 
   cd ..
   
-  gh release create "$(date +%F-%H-%M)" -F "release.md" "subresource_filter_tools_linux-x64.zip" "SHA256SUMS"
+  gh release create "$(date +%F-%H-%M)" -t "Automated build" -F "release.md" "subresource_filter_tools_linux-x64.zip" "SHA256SUMS"
 fi
 
 # now the zip file and SHA256SUMS is ready to be released
