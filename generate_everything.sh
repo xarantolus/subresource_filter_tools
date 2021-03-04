@@ -49,8 +49,10 @@ else
   zip -9 -r "../subresource_filter_tools_linux-x64.zip" *
 
   ../release_info.sh > "../release.md"
-  
+
   cd ..
+  
+  gh release create "$(date +%F-%H-%M)" -F "release.md" "subresource_filter_tools_linux-x64.zip" "SHA256SUMS"
 fi
 
 # now the zip file and SHA256SUMS is ready to be released
