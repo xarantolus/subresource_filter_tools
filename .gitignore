@@ -39,3 +39,4 @@ out/
 SHA256SUMS*
 release.md
 *.log
+*.old

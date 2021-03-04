@@ -55,6 +55,9 @@ output "Done fetching code"
 
 cd src
 
+output "Pulling..."
+git pull
+
 output "Installing additional build dependencies..."
 
 # Install additional build dependencies
