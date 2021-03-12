@@ -73,7 +73,7 @@ rm -rf out/Default || true
 output "Generating build target..."
 
 # Setting up the build: Generate required build files
-gn gen out/Default --args='target_cpu="x64" target_os="linux" enable_nacl=false'
+gn gen out/Default --args='target_cpu="x64" target_os="linux" enable_nacl=false is_component_build=false is_debug=false'
 
 output "Starting build..."
 
