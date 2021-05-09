@@ -40,6 +40,13 @@ output "Getting ready to fetch code"
 # Get or update code
 mkdir -p chromium && cd chromium
 
+cd src
+
+output "Pulling..."
+git pull
+
+cd ..
+
 output "Even if this next command outputs errors, it might still work. The script will exit if not."
 
 # This is the command that is used to initially fetch the source code
@@ -54,9 +61,6 @@ fi
 output "Done fetching code"
 
 cd src
-
-output "Pulling..."
-git pull
 
 output "Installing additional build dependencies..."
 
