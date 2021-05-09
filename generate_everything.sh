@@ -38,6 +38,8 @@ if cmp --silent -- "../SHA256SUMS" "../SHA256SUMS.old"; then
 else
   # We either had an error (because the file doesn't exist) or because they were different. Either way, we create the release
 
+  ./test.sh
+
   # Start off by renaming an old release zip file
   mv "../subresource_filter_tools_linux-x64.zip" "../subresource_filter_tools_linux-x64.zip.old" 2>&1 > /dev/null || true
 
