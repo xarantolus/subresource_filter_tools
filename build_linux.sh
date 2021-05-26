@@ -62,7 +62,7 @@ git pull
 output "Installing additional build dependencies..."
 
 # Install additional build dependencies
-./build/install-build-deps.sh --no-prompt
+./build/install-build-deps.sh --no-prompt --no-syms --no-arm --no-nacl || true 
 
 output "Running preparation steps..."
 
