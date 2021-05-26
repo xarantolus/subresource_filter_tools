@@ -1,0 +1,42 @@
+name: Build project
+
+on:
+  push:
+    branches: [ master ]
+
+  schedule:
+  - cron: "0 15 * * wed"
+  
+
+jobs:
+  build:
+    name: Build
+    runs-on: ubuntu-latest
+    steps:
+    - name: Check out scripts
+      uses: actions/checkout@v2
+      
+    - name: Download tags
+      run: git fetch --prune --unshallow
+
+    - name: Runnning build/generation script
+      shell: bash
+      run: |
+        bash ./generate_everything.sh
+        
+    - name: Generate tag name
+      run: echo "TAG_NAME=$GIT_COMMIT" >> $GITHUB_ENV  
+      
+    - name: Upload release
+      uses: softprops/action-gh-release@v1
+      with:
+        files: |
+             subresource_filter_tools_linux-x64.zip
+             SHA256SUMS
+        tag_name: ${{ env.TAG_NAME }}
+        name: "Automated build"
+        fail_on_unmatched_files: true
+        body_path: release.md
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+  
