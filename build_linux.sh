@@ -37,15 +37,8 @@ output "All tools are installed"
 
 output "Getting ready to fetch code"
 
-# Get or update code
+# Now start cloning
 mkdir -p chromium && cd chromium
-
-cd src
-
-output "Pulling..."
-git pull
-
-cd ..
 
 output "Even if this next command outputs errors, it might still work. The script will exit if not."
 
@@ -58,9 +51,13 @@ if [ $failed -eq 1 ]; then
   gclient sync -D || (output "OK, running \"gclient sync\" also failed.\nYou should probably remove both the chromium/ and depot_tools/ directory and start over." && exit 1)
 fi
 
+
 output "Done fetching code"
 
 cd src
+
+output "Pulling..."
+git pull
 
 output "Installing additional build dependencies..."
 
