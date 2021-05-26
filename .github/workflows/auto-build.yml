@@ -31,6 +31,10 @@ jobs:
       shell: bash
       run: df -h
         
+    - name: Download last release hashes
+      shell: bash
+      run: curl "https://github.com/$GITHUB_REPOSITORY/releases/latest/download/SHA256SUMS" > SHA256SUMS
+      
     - name: Runnning build/generation script
       shell: bash
       run: |
