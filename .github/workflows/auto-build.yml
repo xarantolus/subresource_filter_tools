@@ -20,6 +20,10 @@ jobs:
     - name: Download tags
       run: git fetch --prune --unshallow
 
+    - name: Show available storage
+      shell: bash
+      run: df -h
+      
     - name: Runnning build/generation script
       shell: bash
       run: |
