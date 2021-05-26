@@ -27,7 +27,7 @@ jobs:
     - name: Runnning build/generation script
       shell: bash
       run: |
-        bash ./generate_everything.sh
+        sudo bash ./generate_everything.sh
         
     - name: Generate tag name
       run: echo "TAG_NAME=$GIT_COMMIT" >> $GITHUB_ENV  
