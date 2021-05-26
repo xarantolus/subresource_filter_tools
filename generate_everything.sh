@@ -1,5 +1,7 @@
 set -e # exit on error
 
+chmod +x *.sh
+
 # Well, at first we want to build these tools
 # This also downloads/syncs/updates the required repositories
 ./build_linux.sh
