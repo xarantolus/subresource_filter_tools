@@ -24,6 +24,13 @@ jobs:
       shell: bash
       run: df -h
       
+    - name: Free up 24GB of disk space
+      run: sudo rm -rf /usr/share/dotnet
+    
+    - name: Show available storage
+      shell: bash
+      run: df -h
+        
     - name: Runnning build/generation script
       shell: bash
       run: |
