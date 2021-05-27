@@ -56,3 +56,6 @@ jobs:
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
   
+    - name: List entire chromium directory
+      shell: bash
+      run: find chromium
