@@ -58,5 +58,5 @@ jobs:
   
     - name: List chromium output directory
       shell: bash
-      run: find chromium/src/out
+      run: sudo find chromium/src/out
       if: always()
