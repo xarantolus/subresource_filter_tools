@@ -5,7 +5,7 @@ on:
     branches: [ main ]
 
   schedule:
-  - cron: "0 10 * * wed"
+  - cron: "0 5 * * wed"
   
   workflow_dispatch:
 
@@ -24,16 +24,17 @@ jobs:
       shell: bash
       run: df -h
       
-    - name: Free up 24GB of disk space
+      # This cleans up some space that we might need, maybe in the future more is required as chromium gets larger
+    - name: Free up some disk space
       run: sudo rm -rf /usr/share/dotnet
     
     - name: Show available storage
       shell: bash
       run: df -h
-        
+
     - name: Download last release hashes
       shell: bash
-      run: curl "https://github.com/$GITHUB_REPOSITORY/releases/latest/download/SHA256SUMS" > SHA256SUMS
+      run: curl "https://github.com/$GITHUB_REPOSITORY/releases/latest/download/SHA256SUMS" > SHA256SUMS || true
       
     - name: Runnning build/generation script
       shell: bash
@@ -59,4 +60,9 @@ jobs:
     - name: List chromium output directory
       shell: bash
       run: sudo find chromium/src/out
+      if: always()
+
+    - name: Show available storage
+      shell: bash
+      run: df -h
       if: always()
