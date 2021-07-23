@@ -10,6 +10,8 @@ output() {
 
 # --- At first, we want to have all tools installed
 
+echo "::group::Install dependencies"
+
 output "Start installing tools..."
 
 # the "python" command, which must be python2, is needed for install-build-deps.sh
@@ -33,6 +35,9 @@ export PATH="$PATH:$(pwd)/depot_tools"
 
 output "All tools are installed"
 
+echo "::endgroup::"
+
+echo "::group::Fetch code"
 # --- Now everything needed for the build should be installed
 
 output "Getting ready to fetch code"
@@ -52,17 +57,25 @@ if [ $failed -eq 1 ]; then
 fi
 
 
-output "Done fetching code"
-
 cd src
 
 output "Pulling..."
 git pull
 
+output "Done fetching code"
+
+echo "::endgroup::"
+
+echo "::group::Install additional build dependencies"
+
 output "Installing additional build dependencies..."
 
 # Install additional build dependencies
 ./build/install-build-deps.sh --no-prompt --no-syms --no-arm --no-nacl || true 
+
+echo "::endgroup::"
+
+echo "::group::Run hooks"
 
 output "Running preparation steps..."
 
@@ -71,10 +84,18 @@ gclient runhooks
 
 rm -rf out/Default || true 
 
+echo "::endgroup::"
+
+echo "::group::Generate build files"
+
 output "Generating build target..."
 
 # Setting up the build: Generate required build files
 gn gen out/Default --args='target_cpu="x64" target_os="linux" enable_nacl=false is_component_build=false is_debug=false'
+
+echo "::endgroup::"
+
+echo "::group::Build subresource_filter_tools"
 
 output "Starting build..."
 
@@ -82,6 +103,8 @@ output "Starting build..."
 autoninja -C out/Default subresource_filter_tools 
 
 output "Finished build."
+
+echo "::endgroup::"
 
 cd ..
 cd ..

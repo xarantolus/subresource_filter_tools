@@ -1,11 +1,17 @@
+echo "::group::Setup"
 set -e # exit on error
 
 chmod +x *.sh
 
+echo "::endgroup::"
+
+echo "::group::Build"
 # Well, at first we want to build these tools
 # This also downloads/syncs/updates the required repositories
 ./build_linux.sh
+echo "::endgroup::"
 
+echo "::group::Pack release"
 # copy all tools we need to the out/ directory
 ./copy_libs.sh
 
@@ -35,6 +41,7 @@ if cmp --silent -- "../SHA256SUMS" "../SHA256SUMS.old"; then
     echo "| This means that there were no changes and there's no need to create a release. |"
     echo "----------------------------------------------------------------------------------"
 
+    echo "::endgroup::"
     cd ..
     exit 0
 else
@@ -63,3 +70,4 @@ else
 fi
 
 # now the zip file and SHA256SUMS is ready to be released
+echo "::endgroup::"
