@@ -5,11 +5,9 @@ chmod +x *.sh
 
 echo "::endgroup::"
 
-echo "::group::Build"
 # Well, at first we want to build these tools
 # This also downloads/syncs/updates the required repositories
 ./build_linux.sh
-echo "::endgroup::"
 
 echo "::group::Pack release"
 # copy all tools we need to the out/ directory
