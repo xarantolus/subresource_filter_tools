@@ -14,7 +14,8 @@ echo "::group::Pack release"
 ./copy_libs.sh
 
 cd chromium/src
-GIT_COMMIT=$(git rev-parse --short HEAD)
+GIT_COMMIT_SHORT=$(git rev-parse --short HEAD)
+GIT_COMMIT=$(git rev-parse HEAD)
 cd ../..
 
 # Rename old SHA file (if present)
@@ -51,7 +52,7 @@ else
   mv "../subresource_filter_tools_linux-x64.zip" "../subresource_filter_tools_linux-x64.zip.old" 2>&1 > /dev/null || true
 
   # Write the current tag to a file
-  echo "chromium tag: $GIT_COMMIT" >> "chromium-version-$GIT_COMMIT"
+  echo "$GIT_COMMIT" >> "chromium-version-$GIT_COMMIT_SHORT"
 
   echo "Generating release zip file..."
   # Zip all files in the out directory
