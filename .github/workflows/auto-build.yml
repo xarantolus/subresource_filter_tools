@@ -10,8 +10,8 @@ on:
   workflow_dispatch:
 
 jobs:
-  build:
-    name: Build
+  linux:
+    name: Build for Linux
     runs-on: ubuntu-latest
     steps:
     - name: Check out scripts
@@ -35,35 +35,32 @@ jobs:
     - name: Download last release hashes
       shell: bash
       run: curl -L "https://github.com/$GITHUB_REPOSITORY/releases/latest/download/SHA256SUMS" > SHA256SUMS || true
+      working-directory: linux
       
     - name: Runnning build/generation script
       shell: bash
       run: |
         sudo bash ./generate_everything.sh
+      working-directory: linux
         
     - name: Generate tag name
       run: echo "TAG_NAME=$(date +%F-%H-%M)" >> $GITHUB_ENV    
-      
-    - name: Upload release
-      uses: softprops/action-gh-release@v1
-      with:
-        files: |
-             subresource_filter_tools_linux-x64.zip
-             SHA256SUMS
-        tag_name: ${{ env.TAG_NAME }}
-        name: "Automated build"
-        fail_on_unmatched_files: true
-        body_path: release.md
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      working-directory: linux
         
-    - name: Delete older releases
-      uses: dev-drprasad/delete-older-releases@v0.1.0
+    - uses: actions/upload-artifact@v2
       with:
-        keep_latest: 7
-        delete_tags: true 
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        name: linux-zip
+        path: linux/subresource_filter_tools_linux-x64.zip
+
+    - uses: actions/upload-artifact@v2
+      with:
+        name: SHA256SUMS-linux
+        path: linux/SHA256SUMS
+
+    - uses: actions/upload-artifact@v2
+      with:
+        name: releasemd-linux
+        path: linux/release.md
   
     - name: List chromium output directory
       shell: bash
