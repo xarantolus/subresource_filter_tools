@@ -63,6 +63,8 @@ jobs:
       shell: bash
       run: sudo find chromium/src/out
       if: always()
+      working-directory: linux
+      continue-on-error: true
 
     - name: Show available storage
       shell: bash
@@ -92,7 +94,7 @@ jobs:
       - name: Upload chocolately log file
         uses: actions/upload-artifact@v2
         with:
-          name: Logs
+          name: chocolatey-install-logs
           path: C:\ProgramData\chocolatey\logs\chocolatey.log
         if: ${{ always() }}
 
