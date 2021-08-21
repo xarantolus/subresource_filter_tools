@@ -2,6 +2,10 @@ CHROMIUM_COMMIT="$(cat chromium-version-*)"
 
 echo "This release provides prebuilt executables/binaries of \`ruleset_converter\`, \`subresource_filter_tool\` and \`subresource_indexing_tool\` for \`x64\`/\`x86-64\`/\`amd64\`."
 echo "These tools were built from the [latest available chromium commit](https://chromium.googlesource.com/chromium/src/+/$CHROMIUM_COMMIT)."
+echo "There are builds for both Linux and Windows in the respective zip files."
+echo ""
+
+echo "Info for Linux: "
 
 echo ""
 
