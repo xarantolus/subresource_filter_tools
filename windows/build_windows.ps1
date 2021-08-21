@@ -68,9 +68,8 @@ Start-Process -Wait -NoNewWindow -FilePath cmd -ArgumentList "/c", "gclient", "r
 
 Write-Output "Generating build files"
 
-Start-Process -Wait -NoNewWindow -FilePath cmd -ArgumentList "/c", "gn", "args", "out/Default", "--args", "target_cpu=x64 target_os=windows enable_nacl=false is_component_build=false is_debug=false blink_symbol_level=0"
+Start-Process -Wait -NoNewWindow -FilePath cmd -ArgumentList "/c", "gn", "gen", "out/Default", "--args", '"target_cpu=x64 target_os=windows enable_nacl=false is_component_build=false is_debug=false blink_symbol_level=0"'
 
-Start-Process -Wait -NoNewWindow -FilePath cmd -ArgumentList "/c", "gn", "gen", "out/Default"
 
 autoninja -C out/Default subresource_filter_tools
 
