@@ -82,6 +82,6 @@ $GIT_COMMIT_SHORT = [string](git rev-parse --short HEAD).Trim()
 Write-Output "$GIT_COMMIT" > "chromium-version-$GIT_COMMIT_SHORT"
 
 # Create ZIP file in workflow directory
-Compress-Archive -Path *.exe, "chromium-version-$GIT_COMMIT_SHORT" -DestinationPath "$WorkflowStartDir/subresource_filter_tools_windows-x64.zip"
+Compress-Archive -Path ruleset_converter.exe, subresource_filter_tool.exe, subresource_indexing_tool.exe, "chromium-version-$GIT_COMMIT_SHORT" -DestinationPath "$WorkflowStartDir/subresource_filter_tools_windows-x64.zip"
 
 tree
