@@ -52,7 +52,7 @@ else
   mv "../subresource_filter_tools_linux-x64.zip" "../subresource_filter_tools_linux-x64.zip.old" 2>&1 > /dev/null || true
 
   # Write the current tag to a file
-  echo "$GIT_COMMIT" >> "chromium-version-$GIT_COMMIT_SHORT"
+  echo "$GIT_COMMIT" > "chromium-version-$GIT_COMMIT_SHORT"
 
   echo "Generating release zip file..."
   # Zip all files in the out directory
