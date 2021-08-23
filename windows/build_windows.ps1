@@ -44,9 +44,7 @@ if ($gitMail.Trim().Length -eq 0) {
 
 # Set variables as said in the guide          
 $ENV:DEPOT_TOOLS_WIN_TOOLCHAIN = '0'
-setx DEPOT_TOOLS_WIN_TOOLCHAIN=0
 $ENV:vs2019_install = "C:\Program Files (x86)\Microsoft Visual Studio\2019\Community"
-setx vs2019_install=BUILDTOOLS_PATH
 
 Write-Output "Creating chromium directory"
 
