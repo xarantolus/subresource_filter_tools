@@ -58,8 +58,6 @@ else
   # Zip all files in the out directory
   zip -9 -r "../subresource_filter_tools_linux-x64.zip" *
 
-  ../release_info.sh > "../release.md"
-
   cd ..
   
   if [ "$RELEASE" == "true" ]

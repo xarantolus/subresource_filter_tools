@@ -9,7 +9,6 @@ You should run this on a SSD of sufficient size (because you'll end up with ~700
 * `generate_everything.sh`: this is the script you want to run to build and package everything. At first it runs the install & build script, then copies all release files into a directory, which is then zipped. It automatically updates the code on subsequent builds and only creates a new release file if the build result changed. 
 * `build_linux.sh`: installs all build tools (follows [this guide](https://chromium.googlesource.com/chromium/src/+/master/docs/linux/build_instructions.md)), then downloads the source code and builds `subresource_filter_tools`
 * `copy_libs.sh`: copies binaries and their required libraries to an `out/` directory
-* `release_info.sh`: generates the release info once the build finished
 
 ### Scripts for Windows
 * `build_windows.ps1`: This scripts clones Chromium, installs dependencies and builds everything that's needed. Then it creates a release zip file. Please note that this script might do **PERMANENT CHANGES TO YOUR SYSTEM ENVIRONMENT**, so run it in a virtual machine or some other way to prevent it from doing so. Or just run it in GitHub Actions, which is what this script was made for

@@ -54,11 +54,6 @@ jobs:
         name: SHA256SUMS-linux
         path: linux/SHA256SUMS
 
-    - uses: actions/upload-artifact@v2
-      with:
-        name: releasemd-linux
-        path: linux/release.md
-  
     - name: List chromium output directory
       shell: bash
       run: sudo find chromium/src/out
@@ -134,14 +129,19 @@ jobs:
 
       - uses: actions/download-artifact@v2
         with:
-          name: releasemd-linux
-      
-      - uses: actions/download-artifact@v2
-        with:
           name: windows-zip
 
       - name: Display structure of downloaded files
         run: ls -R
+
+      - name: Display downloaded zip contents
+        run: find . -maxdepth 1 -name "*.zip" -exec unzip -l {} \;
+
+      - name: Generate release info
+        run: |
+          bash other/release_info.sh > release.md
+          echo "Generated output file:"
+          cat release.md
 
       - name: Generate tag name
         run: echo "TAG_NAME=$(date +%F-%H-%M)" >> $GITHUB_ENV    
