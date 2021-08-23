@@ -1,3 +1,4 @@
+set -e
 # Assumption: We now have subresource_filter_tools_windows-x64.zip and subresource_filter_tools_linux-x64.zip
 # in the same directory as the script is run in
 
