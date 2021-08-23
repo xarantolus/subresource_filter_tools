@@ -66,7 +66,12 @@ Start-Process -Wait -NoNewWindow -FilePath cmd -ArgumentList "/c", "gclient", "r
 
 Write-Output "Generating build files"
 
-gn gen --args '"target_cpu=x64 target_os=windows enable_nacl=false is_component_build=false is_debug=false blink_symbol_level=0"' out/Default
+# First of all, we copy our args.gn file there
+New-Item -Path out -Force -ItemType Directory
+New-Item -Path out/Default -Force -ItemType Directory
+Copy-Item "$WorkflowStartDir/args.gn" "out/Default/args.gn"
+
+gn gen out/Default
 
 autoninja -C out/Default subresource_filter_tools
 
