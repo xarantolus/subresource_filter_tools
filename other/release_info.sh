@@ -87,5 +87,7 @@ echo
 echo "$ file subresource_indexing_tool.exe"
 file subresource_indexing_tool.exe
 
+echo "\`\`\`"
+
 echo ""
 echo ""
