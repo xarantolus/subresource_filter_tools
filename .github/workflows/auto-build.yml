@@ -163,9 +163,10 @@ jobs:
         with:
           files: |
               subresource_filter_tools_linux-x64.zip
+              subresource_filter_tools_windows-x64.zip
               SHA256SUMS
           tag_name: ${{ env.TAG_NAME }}
-          name: "Automated build"
+          name: "Automated build for Linux and Windows"
           fail_on_unmatched_files: true
           body_path: release.md
           draft: ${{ env.BRANCH_NAME != 'main' }}
