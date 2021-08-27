@@ -1,5 +1,7 @@
 # See https://chromium.googlesource.com/chromium/src/+/refs/heads/main/docs/windows_build_instructions.md for the guide on what this does
 
+Write-Output "::group::Init"
+
 $WorkflowStartDir = (Get-Location).Path
 
 # The C:\ drive has about 80 GB, the D: drive (default) only 12. We need about 25 GB, so we switch over
@@ -10,6 +12,10 @@ function New-TemporaryDirectory {
     $out = (Join-Path $parent $name)
     return (New-Item -ItemType Directory -Path $out).FullName
 }
+
+Write-Output "::endgroup::"
+
+Write-Output "::group::Install depot_tools"
 
 $url = "https://storage.googleapis.com/chrome-infra/depot_tools.zip"
 $zipName = "depot_tools.zip"
@@ -27,8 +33,11 @@ Expand-Archive -Path $zipName -DestinationPath $targetDir
 # Add depot_tools to $PATH, at least for this process
 $ENV:Path = $targetDir + ";" + $ENV:Path
 
-
 Write-Output "Finished downloading depot_tools"
+
+Write-Output "::endgroup::"
+
+Write-Output "::group::Set up gclient"
 
 Write-Output "Let gclient download its dependencies on the first run"
 Start-Process -Wait -NoNewWindow -FilePath cmd -ArgumentList "/c", "gclient"
@@ -46,6 +55,10 @@ if ($gitMail.Trim().Length -eq 0) {
 $ENV:DEPOT_TOOLS_WIN_TOOLCHAIN = '0'
 $ENV:vs2019_install = "C:\Program Files (x86)\Microsoft Visual Studio\2019\Community"
 
+Write-Output "::endgroup::"
+
+Write-Output "::group::Fetch chromium code"
+
 Write-Output "Creating chromium directory"
 
 New-Item -ItemType Directory -Force chromium
@@ -56,6 +69,10 @@ fetch --no-history chromium
 
 Set-Location src
 
+Write-Output "::endgroup::"
+
+Write-Output "::group::Run hooks"
+
 New-Item -ItemType Directory -Force out/Default
 
 Write-Output "Download more dependencies"
@@ -63,6 +80,10 @@ Start-Process -Wait -NoNewWindow -FilePath cmd -ArgumentList "/c", "gclient", "s
 
 Write-Output "Run hooks"
 Start-Process -Wait -NoNewWindow -FilePath cmd -ArgumentList "/c", "gclient", "runhooks"
+
+Write-Output "::endgroup::"
+
+Write-Output "::group::Generate build files"
 
 Write-Output "Generating build files"
 
@@ -73,7 +94,15 @@ Copy-Item "$WorkflowStartDir/args.gn" "out/Default/args.gn"
 
 gn gen out/Default
 
+Write-Output "::endgroup::"
+
+Write-Output "::group::Build subresource_filter_tools"
+
 autoninja -C out/Default subresource_filter_tools
+
+Write-Output "::endgroup::"
+
+Write-Output "::group::Generating release zip file"
 
 Set-Location out/Default
 
@@ -85,4 +114,10 @@ Write-Output "$GIT_COMMIT" > "chromium-version-$GIT_COMMIT_SHORT"
 # Create ZIP file in workflow directory
 Compress-Archive -Path ruleset_converter.exe, subresource_filter_tool.exe, subresource_indexing_tool.exe, "chromium-version-$GIT_COMMIT_SHORT" -DestinationPath "$WorkflowStartDir/subresource_filter_tools_windows-x64.zip"
 
-tree
+Write-Output "::endgroup::"
+
+Write-Output "::group::List chromium output directory"
+
+Get-ChildItem -Recurse | Foreach-Object FullName
+
+Write-Output "::endgroup::"
