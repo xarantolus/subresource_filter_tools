@@ -31,11 +31,6 @@ jobs:
     - name: Show available storage
       shell: bash
       run: df -h
-
-    - name: Download last release hashes
-      shell: bash
-      run: curl -L "https://github.com/$GITHUB_REPOSITORY/releases/latest/download/SHA256SUMS" > SHA256SUMS || true
-      working-directory: linux
       
     - name: Runnning build/generation script
       shell: bash
