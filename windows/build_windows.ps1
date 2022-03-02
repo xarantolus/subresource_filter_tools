@@ -19,6 +19,9 @@ Write-Output "::Installing Visual Studio Components"
 
 Start-Process -Wait -NoNewWindow -FilePath cmd -ArgumentList "/c", '"C:\Program Files (x86)\Microsoft Visual Studio\Installer\vs_installer.exe"', "--add", "Microsoft.VisualStudio.Workload.NativeDesktop", "--add", "Microsoft.VisualStudio.Component.Windows10SDK", "--add", "Microsoft.VisualStudio.Component.Windows10SDK.19041", "--add", "Microsoft.VisualStudio.Component.VC.ATLMFC", "--includeRecommended", "--includeOptional", "--passive", "--locale", "en-US"
 
+Start-Process -Wait -NoNewWindow -FilePath cmd -ArgumentList "/c", "choco", "install", "windbg"
+
+
 Write-Output "::group::Install depot_tools"
 
 $url = "https://storage.googleapis.com/chrome-infra/depot_tools.zip"
