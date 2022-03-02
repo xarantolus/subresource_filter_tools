@@ -15,6 +15,10 @@ function New-TemporaryDirectory {
 
 Write-Output "::endgroup::"
 
+Write-Output "::Installing Visual Studio Components"
+
+Start-Process -Wait -NoNewWindow -FilePath cmd -ArgumentList "/c", '"C:\Program Files (x86)\Microsoft Visual Studio\Installer\vs_installer.exe"', "--add", "Microsoft.VisualStudio.Workload.NativeDesktop", "--add", "Microsoft.VisualStudio.Component.VC.ATLMFC", "--includeRecommended", "--includeOptional", "--passive", "--locale", "en-US"
+
 Write-Output "::group::Install depot_tools"
 
 $url = "https://storage.googleapis.com/chrome-infra/depot_tools.zip"
@@ -48,12 +52,16 @@ if ($gitMail.Trim().Length -eq 0) {
     Write-Output "Setting up default git credentials"
     git config --global user.name "GitHub Actions"
     git config --global user.email "github-actions@github.com"    
+
+    git config --global core.autocrlf false
+    git config --global core.filemode false
+    git config --global branch.autosetuprebase always
 }
 
 
 # Set variables as said in the guide          
 $ENV:DEPOT_TOOLS_WIN_TOOLCHAIN = '0'
-$ENV:vs2019_install = "C:\Program Files (x86)\Microsoft Visual Studio\2019\Community"
+$ENV:vs2019_install = "C:\Program Files (x86)\Microsoft Visual Studio\2019\Enterprise"
 
 Write-Output "::endgroup::"
 
