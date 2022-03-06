@@ -78,7 +78,7 @@ jobs:
       - name: Install Windows 10 SDK
         run: |
           Invoke-WebRequest -Uri "https://go.microsoft.com/fwlink/?linkid=2164145" -OutFile "winsdksetup.exe"
-          ./winsdksetup.exe -features + -quiet
+          winsdksetup.exe -features + -quiet
 
       # Install "C:\Program Files (x86)\Microsoft Visual Studio\Installer\vs_installer.exe" and set it up as described in the "Setting up Windows" section
       - name: Install Visual Studio Community 2019 Build Tools
