@@ -60,56 +60,9 @@ jobs:
       run: df -h
       if: always()
 
-
-  windows:
-    name: Build for Windows
-    runs-on: windows-latest
-
-    steps:
-      - uses: actions/checkout@v2
-      
-      - name: Show disk usage
-        run: fsutil volume diskfree ((get-location).Drive.Name + ":")
-        
-      - name: Show all disks
-        run: Get-PSDrive
-        
-      # Install "C:\Program Files (x86)\Microsoft Visual Studio\Installer\vs_installer.exe" and set it up as described in the "Setting up Windows" section
-      - name: Install Visual Studio Community 2019 Build Tools
-        continue-on-error: true
-        run: |
-          choco install visualstudio2019community --package-parameters "--add Microsoft.VisualStudio.Workload.NativeDesktop --add Microsoft.VisualStudio.Component.VC.ATLMFC --includeRecommended --includeOptional --passive --locale en-US"
-     
-      - name: Upload chocolately log file
-        uses: actions/upload-artifact@v2
-        with:
-          name: chocolatey-install-logs
-          path: C:\ProgramData\chocolatey\logs\chocolatey.log
-        if: ${{ always() }}
-
-      - name: Show disk usage
-        run: fsutil volume diskfree ((get-location).Drive.Name + ":")
-
-      - name: Run build script
-        run: .\build_windows.ps1
-        working-directory: windows
-
-      - name: Show disk usage
-        run: fsutil volume diskfree ((get-location).Drive.Name + ":")
-        if: ${{ always() }}
-        
-      - name: Show all disks
-        run: Get-PSDrive
-        if: ${{ always() }}
-        
-      - uses: actions/upload-artifact@v2
-        with:
-          name: windows-zip
-          path: windows/subresource_filter_tools_windows-x64.zip
-
   release:
     name: Release
-    needs: [linux, windows]
+    needs: [ linux ]
     runs-on: ubuntu-latest
 
     steps:
@@ -123,10 +76,6 @@ jobs:
       - uses: actions/download-artifact@v2
         with:
           name: SHA256SUMS-linux
-
-      - uses: actions/download-artifact@v2
-        with:
-          name: windows-zip
 
       - name: Display structure of downloaded files
         run: ls -R
@@ -158,10 +107,9 @@ jobs:
         with:
           files: |
               subresource_filter_tools_linux-x64.zip
-              subresource_filter_tools_windows-x64.zip
               SHA256SUMS
           tag_name: ${{ env.TAG_NAME }}
-          name: "Automated build for Linux and Windows"
+          name: "Automated build for Linux"
           fail_on_unmatched_files: true
           body_path: release.md
           draft: ${{ env.BRANCH_NAME != 'main' }}
@@ -169,10 +117,11 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           
       - name: Delete older releases
-        uses: dev-drprasad/delete-older-releases@v0.1.0
+        uses: dev-drprasad/delete-older-releases@v0.2.0
         with:
           keep_latest: 7
-          delete_tags: true 
+          delete_tags: true
+          delete_tag_pattern: "-"
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         if: ${{ env.BRANCH_NAME == 'main' }}
