@@ -80,7 +80,7 @@ Write-Output "::group::Run hooks"
 New-Item -ItemType Directory -Force out/Default
 
 Write-Output "Download more dependencies"
-Start-Process -Wait -NoNewWindow -FilePath cmd -ArgumentList "/c", "gclient", "sync"
+Start-Process -Wait -NoNewWindow -FilePath cmd -ArgumentList "/c", "gclient", "sync", "--no-history", "--with_branch_heads"
 
 Write-Output "Run hooks"
 Start-Process -Wait -NoNewWindow -FilePath cmd -ArgumentList "/c", "gclient", "runhooks"
