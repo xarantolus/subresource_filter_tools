@@ -26,7 +26,7 @@ jobs:
 
       # This cleans up some space that we might need, maybe in the future more is required as chromium gets larger
     - name: Free up some disk space
-      uses: curoky/cleanup-disk-action@v2.0
+      uses: HandsomeYingyan/cleanup-disk-action@v3.0
 
     - name: Show available storage
       shell: bash
