@@ -61,7 +61,12 @@ fi
 cd src
 
 output "Pulling..."
-git pull
+
+if [ -z "$CURRENT_BRANCH" ]; then
+    CURRENT_BRANCH=main
+fi
+
+git pull origin "$CURRENT_BRANCH"
 
 output "Done fetching code"
 
