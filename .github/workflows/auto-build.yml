@@ -4,8 +4,8 @@ on:
   push:
 
   schedule:
-  - cron: "0 5 * * wed"
-
+  - cron: "37 2 24 * *" # run once a month
+  
   workflow_dispatch:
 
 jobs:
