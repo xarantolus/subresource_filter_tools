@@ -36,7 +36,7 @@ TL;DR:
 ## Download
 You can either head over to the releases section of this repository or [click this direct link for Linux](https://github.com/xarantolus/subresource_filter_tools/releases/latest/download/subresource_filter_tools_linux-x64.zip) or [this direct link for Windows](https://github.com/xarantolus/subresource_filter_tools/releases/latest/download/subresource_filter_tools_windows-x64.zip) to get the latest release.
 
-These releases are built by GitHub Actions every week, so they should be up to date.
+These releases are built by GitHub Actions every month, so they should be up to date.
 
 ## License
 The License applies to the files published in this repository.
