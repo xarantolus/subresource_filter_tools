@@ -15,7 +15,7 @@ jobs:
 
     steps:
     - name: Check out scripts
-      uses: actions/checkout@v2
+      uses: actions/checkout@v4
 
     - name: Download tags
       run: git fetch --prune --unshallow
@@ -66,7 +66,7 @@ jobs:
     runs-on: windows-latest
 
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v4
 
       - name: Show disk usage
         run: fsutil volume diskfree ((get-location).Drive.Name + ":")
@@ -120,7 +120,7 @@ jobs:
 
     steps:
       - name: Check out repository
-        uses: actions/checkout@v2
+        uses: actions/checkout@v4
 
       - uses: actions/download-artifact@v2
         with:
