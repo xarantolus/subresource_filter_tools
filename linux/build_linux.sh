@@ -14,11 +14,7 @@ output() {
 echo "::group::Install dependencies"
 
 output "Start installing tools..."
-
-# the "python" command, which must be python2, is needed for install-build-deps.sh
-apt-get install -y python2 git # we also need git
-alias python=python2 # this doesn't necessarily work for non-shell stuff
-ln -sf "$(which python2)" /usr/bin/python # which is why we need this symlink
+apt-get install -y git
 
 output "Checking depot_tools..."
 
