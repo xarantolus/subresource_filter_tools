@@ -46,7 +46,7 @@ output "Even if this next command outputs errors, it might still work. The scrip
 
 # This is the command that is used to initially fetch the source code
 # It does not work if the repo has already been downloaded - which is why whe need the fallback option
-fetch --nohooks --no-history chromium || failed=1 && output "\"fetch\" failing doesn't matter.\nUsing \"gclient sync\" to download updates, repo likely has already been downloaded"
+fetch --no-history chromium || failed=1 && output "\"fetch\" failing doesn't matter.\nUsing \"gclient sync\" to download updates, repo likely has already been downloaded"
 if [[ $failed -eq 1 ]]; then
   # fallback to sync command to get latest changes. If that one doesn't work, then we're out of luck
   # The -D flag removes any unused/unnecessary parts of the repository that are no longer needed
