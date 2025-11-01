@@ -38,12 +38,12 @@ jobs:
         sudo bash ./generate_everything.sh
       working-directory: linux
 
-    - uses: actions/upload-artifact@v4
+    - uses: actions/upload-artifact@v5
       with:
         name: linux-zip
         path: linux/subresource_filter_tools_linux-x64.zip
 
-    - uses: actions/upload-artifact@v4
+    - uses: actions/upload-artifact@v5
       with:
         name: SHA256SUMS-linux
         path: linux/SHA256SUMS
@@ -87,7 +87,7 @@ jobs:
           choco install visualstudio2019community --package-parameters "--add Microsoft.VisualStudio.Workload.NativeDesktop --add Microsoft.VisualStudio.Component.VC.ATLMFC --includeRecommended --includeOptional --passive --locale en-US"
 
       - name: Upload chocolately log file
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v5
         with:
           name: chocolatey-install-logs
           path: C:\ProgramData\chocolatey\logs\chocolatey.log
@@ -108,7 +108,7 @@ jobs:
         run: Get-PSDrive
         if: ${{ always() }}
 
-      - uses: actions/upload-artifact@v4
+      - uses: actions/upload-artifact@v5
         with:
           name: windows-zip
           path: windows/subresource_filter_tools_windows-x64.zip
