@@ -21,7 +21,7 @@ output "Checking depot_tools..."
 if [ -d "depot_tools" ]; then
     cd depot_tools
     git reset --hard HEAD # in case anything was saved here
-    git pull origin "$CURRENT_BRANCH"
+    git pull origin main
     cd ..
 else
     # Install depot_tools
@@ -30,7 +30,11 @@ fi
 # make them available for further build steps
 export PATH="$PATH:$(pwd)/depot_tools"
 
-output "All tools are installed"
+output "Initializing depot_tools..."
+
+gclient || (output "gclient initialization failed!" && exit 1)
+
+output "All tools are installed and initialized"
 
 echo "::endgroup::"
 
