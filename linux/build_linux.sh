@@ -32,6 +32,11 @@ export PATH="$PATH:$(pwd)/depot_tools"
 
 output "Initializing depot_tools..."
 
+# Explicitly ensure bootstrap
+if [ -f "depot_tools/ensure_bootstrap" ]; then
+    depot_tools/ensure_bootstrap
+fi
+
 gclient || (output "gclient initialization failed!" && exit 1)
 
 output "All tools are installed and initialized"
