@@ -68,6 +68,14 @@ jobs:
     steps:
       - uses: actions/checkout@v5
 
+      - name: Free up disk space
+        run: |
+          Remove-Item -Recurse -Force -ErrorAction SilentlyContinue "C:\Program Files\Android"
+          Remove-Item -Recurse -Force -ErrorAction SilentlyContinue "C:\Program Files\Microsoft SQL Server"
+          Remove-Item -Recurse -Force -ErrorAction SilentlyContinue "C:\hostedtoolcache\windows\Ruby"
+          Remove-Item -Recurse -Force -ErrorAction SilentlyContinue "C:\hostedtoolcache\windows\Go"
+          Remove-Item -Recurse -Force -ErrorAction SilentlyContinue "C:\hostedtoolcache\windows\Java"
+
       - name: Show disk usage
         run: fsutil volume diskfree ((get-location).Drive.Name + ":")
 
