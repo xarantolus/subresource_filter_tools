@@ -4,8 +4,7 @@ Write-Output "::group::Init"
 
 $WorkflowStartDir = (Get-Location).Path
 
-# The C:\ drive has about 80 GB, the D: drive (default) only 12. We need about 25 GB, so we switch over
-Set-Location C:\
+# The D: drive (default) has more space (~150GB) than C: (~113GB used, 36GB free), so we stay on D:.
 function New-TemporaryDirectory {
     $parent = [System.IO.Path]::GetTempPath()
     [string] $name = [System.Guid]::NewGuid()
