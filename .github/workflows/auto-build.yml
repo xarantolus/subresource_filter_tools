@@ -15,7 +15,7 @@ jobs:
 
     steps:
     - name: Check out scripts
-      uses: actions/checkout@v5
+      uses: actions/checkout@v6
 
     - name: Download tags
       run: git fetch --prune --unshallow
@@ -66,7 +66,7 @@ jobs:
     runs-on: windows-latest
 
     steps:
-      - uses: actions/checkout@v5
+      - uses: actions/checkout@v6
 
       - name: Free up disk space
         run: |
@@ -128,7 +128,7 @@ jobs:
 
     steps:
       - name: Check out repository
-        uses: actions/checkout@v5
+        uses: actions/checkout@v6
 
       - uses: actions/download-artifact@v4
         with:
