@@ -5,7 +5,7 @@ on:
 
   schedule:
   - cron: "37 2 24 * *" # run once a month
-  
+
   workflow_dispatch:
 
 jobs:
@@ -73,6 +73,11 @@ jobs:
 
       - name: Show all disks
         run: Get-PSDrive
+
+      - name: Free up some disk space
+        uses: jlumbroso/free-disk-space@v1.3.1
+        with:
+          tool-cache: false
 
       # Install the Windows 10 SDK, choose a compatible version from here: https://developer.microsoft.com/en-us/windows/downloads/sdk-archive/
       - name: Install Windows 10 SDK
