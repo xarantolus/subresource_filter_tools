@@ -28,14 +28,14 @@ else
     git clone https://chromium.googlesource.com/chromium/tools/depot_tools.git
 fi
 # make them available for further build steps
-export PATH="$PATH:$(pwd)/depot_tools"
+export PATH="$(pwd)/depot_tools:$PATH"
 
 output "Initializing depot_tools..."
 
-# Explicitly ensure bootstrap
-if [ -f "depot_tools/ensure_bootstrap" ]; then
-    depot_tools/ensure_bootstrap
-fi
+# Trick depot_tools into thinking we are not running as root
+# This is necessary because update_depot_tools aborts if it detects root,
+# preventing the necessary bootstrapping (python3, cipd, etc.)
+export USER=builder
 
 gclient || (output "gclient initialization failed!" && exit 1)
 
